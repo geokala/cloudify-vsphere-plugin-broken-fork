@@ -90,6 +90,10 @@ def create_new_server(server_client):
     template_name = server['template']
     cpus = server['cpus']
     memory = server['memory']
+    if 'customize' in server:
+        customize = server['customize']
+    else:
+        customize = False
 
     server = server_client.create_server(auto_placement,
                                          cpus,
@@ -100,7 +104,8 @@ def create_new_server(server_client):
                                          template_name,
                                          vm_name,
                                          domain,
-                                         dns_servers)
+                                         dns_servers,
+                                         customize)
 
     ctx.instance.runtime_properties[VSPHERE_SERVER_ID] = server._moId
 
