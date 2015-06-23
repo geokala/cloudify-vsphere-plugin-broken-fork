@@ -201,7 +201,8 @@ class ServerClient(VsphereClient):
                       template_name,
                       vm_name,
                       domain=None,
-                      dns_servers=None):
+                      dns_servers=None,
+                      customize=True):
         host, datastore = self.place_vm(auto_placement)
 
         devices = []
@@ -306,7 +307,7 @@ class ServerClient(VsphereClient):
         clonespec.powerOn = True
         clonespec.template = False
 
-        if adaptermaps:
+        if adaptermaps and customize:
             customspec = vim.vm.customization.Specification()
             customspec.nicSettingMap = adaptermaps
 
