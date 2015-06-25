@@ -436,6 +436,8 @@ class ServerClient(VsphereClient):
     def get_server_ip(self, vm, network_name):
         server_ip = None
         for network in vm.guest.net:
+            if network.network is None:
+                continue
             if network_name.lower() == network.network.lower()\
                     and len(network.ipAddress) > 0:
                 server_ip = network.ipAddress[0]
