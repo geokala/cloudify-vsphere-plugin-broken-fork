@@ -67,6 +67,9 @@ def remove_runtime_properties(properties, context):
 
 class Config(object):
 
+    # Required during vsphere manager bootstrap
+    CONNECTION_CONFIG_PATH_DEFAULT = '~/connection_config.yaml'
+
     def get(self):
         cfg = {}
         which = self.__class__.which
